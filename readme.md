@@ -23,7 +23,7 @@
 
   Example:
 
-  ```json
+  ```bash
   POST http://localhost:3000/api/Movies
   Content-Type: application/json
 
@@ -41,8 +41,7 @@
 
   Example:
 
-  ```json
-  Copy code
+  ```bash
   PUT http://localhost:3000/api/Movies/612f332df12a9d215c729738
   Content-Type: application/json
 
@@ -90,8 +89,14 @@ To start the API server, run: npm start
 
 API Endpoints
 
-- `GET` /api/Movies: Retrieve all Movies from the database.
-- `GET` /api/Movies/:id: Retrieve a specific Movie by its ID from the database.
-- `POST` /api/Movies: Create a new Movie and add it to the database.
-- `PUT` /api/Movies/:id: Update a specific Movie by its ID in the database.
-- `DELETE` /api/Movies/:id: Delete a specific Movie by its ID from the database.
+- `GET` /api/Movies [ Retrieve all Movies from the database.]
+- `GET` /api/Movies/:id [ Retrieve a specific Movie by its ID from the database.]
+- `POST` /api/Movies [ Create a new Movie and add it to the database.]
+- `PUT` /api/Movies/:id [ Update a specific Movie by its ID in the database.]
+- `DELETE` /api/Movies/:id [ Delete a specific Movie by its ID from the database.]
+
+## Deployed
+
+URL: https://moviedbcreds.onrender.com
+
+/ GET - https://moviedbcres.onrender.com/api/Movies

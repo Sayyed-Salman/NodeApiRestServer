@@ -19,46 +19,42 @@ exports.getMoviesbyId = async (req,res) => {
 };
 
 exports.createMovie = async (req,res) => {
+    if (req.method === 'POST' && Object.keys(req.body).length === 0) {
+    return res.status(400).json({ error: 'Empty request body. Please provide valid data.' });}
+
     const NewMovie = new Movie({
         name:req.body.name,
         img:req.body.img,
         summary:req.body.summary,
     });
+
     try{
         const newMovie = await NewMovie.save();
         res.status(201).json(newMovie);
     } catch(err) {
         res.status(400).json({message:err.message});
     }
+
 };
 
 exports.updateMovie = async (req,res) => {
-    try{
-        const updatedMovieData = {
-  name: req.body.name,
-  img: req.body.img,
-  summary: req.body.summary,
-};
-
-Movie.findOneAndUpdate(
-  { _id: req.params.id },
-  updatedMovieData,
-  { new: true },
-  (err, movie) => {
-    if (err) {
-      console.error('Error updating the movie:', err);
-      res.status(500).send('Error updating the movie.');
-    } else if (movie) {
-      console.log('Movie updated successfully.');
-      res.send(movie);
-    } else {
-      console.log('Movie not found.');
-      res.status(404).send('Movie not found.');
+    const {name, img, summary} = req.body;
+    if (!name || !img || !summary) {
+        return res.status(400).json({ error: 'Please provide all required fields.' });
     }
-  }
-);
 
-        
+    try{
+        const updatedMovie = await Movie.findByIdAndUpdate(
+                                        req.params.id,
+                                        { name, img, summary },
+                                        { new: true }
+                                        );
+
+    if (updatedMovie) {
+      res.json(updatedMovie);
+    } else {
+      res.status(404).json({ error: 'Movie not found' });
+    }
     } catch(err) {
         res.status(400).json({message:err.message});
     }
