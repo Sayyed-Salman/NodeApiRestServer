@@ -22,10 +22,10 @@ jobs:
           node-version: 16
 
       - name: Build Docker image
-        run: docker build -t nodeRESTapi .
+        run: docker build -t node-rest-api .
 
       - name: Tag Docker image
-        run: docker tag nodeRESTapi salmansyyd/nodeRESTapi:latest
+        run: docker tag nodeRESTapi salmansyyd/node-rest-api:latest
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push salmansyyd/nodeRESTapi:latest
+        run: docker push salmansyyd/node-rest-api:latest
 
       - name: Run Docker container
-        run: docker run -d -p 3000:3000 nodeRESTapi
+        run: docker run -d -p 3000:3000 node-rest-api
