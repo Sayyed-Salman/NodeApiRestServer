@@ -101,4 +101,4 @@ API Endpoints
 
 URL: https://moviedbcreds.onrender.com
 
-- https://moviedbcres.onrender.com/api/Movies
+- https://moviedbcreds.onrender.com/api/Movies
